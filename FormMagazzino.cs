@@ -57,9 +57,8 @@ namespace GMagazzinoApsov
                     cella.Style.BackColor = cella.Value == null ? Color.Red : Color.Green;
                 }
             }
-            grigliaMagazzino.Dock = DockStyle.Fill;
-            panelGrigliaMagazzino.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            panelGrigliaMagazzino.Dock = DockStyle.Fill;
+            panelGrigliaMagazzino.Anchor = AnchorStyles.Bottom | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Left;
+            grigliaMagazzino.Anchor = AnchorStyles.Bottom | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Left;
         }
 
         private void InizializzaToolbar()
