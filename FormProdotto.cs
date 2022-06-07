@@ -80,7 +80,6 @@ namespace GMagazzinoApsov
                 foreach (DataGridViewCell cella in celleSelezionata)
                 {
                     cella.Value = prodotto;
-                    cella.Style.BackColor = Color.Green;
                 }
                 this.Close();
             }

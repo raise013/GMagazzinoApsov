@@ -39,6 +39,7 @@ namespace GMagazzinoApsov
         private void InizializzaPanelMagazzino()
         {
             grigliaMagazzino.CellDoubleClick += grigliaMagazzino_CellDoubleClick;
+            grigliaMagazzino.CellPainting += grigliaMagazzino_CellPainting;
 
             for (int i = 0; i < _numeroColonne; i++)
             {
@@ -50,20 +51,12 @@ namespace GMagazzinoApsov
                 int header = i + 1;
                 AggiungiRiga(grigliaMagazzino, header.ToString());
             }
-            foreach (DataGridViewRow riga in grigliaMagazzino.Rows)
-            {
-                foreach (DataGridViewCell cella in riga.Cells)
-                {
-                    cella.Style.BackColor = cella.Value == null ? Color.Red : Color.Green;
-                }
-            }
             panelGrigliaMagazzino.Anchor = AnchorStyles.Bottom | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Left;
             grigliaMagazzino.Anchor = AnchorStyles.Bottom | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Left;
         }
 
         private void InizializzaToolbar()
         {
-            buttonInserisciProdotti.Dock = DockStyle.Bottom;
             panelToolbar.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panelToolbar.Dock = DockStyle.Bottom;
         }
@@ -118,6 +111,25 @@ namespace GMagazzinoApsov
                     formInserisciProdotto.ShowDialog();
                 }
             }
+        }
+        private void buttonRimuoviProdotto_Click(object sender, EventArgs e)
+        {
+            if (grigliaMagazzino.SelectedCells == null)
+            {
+                MessageBox.Show("È necessario selezionare almeno una cella");
+            }
+            else
+            {
+                foreach (DataGridViewCell cella in grigliaMagazzino.SelectedCells)
+                {
+                    cella.Value = null;
+                }
+            }
+        }
+
+        private void grigliaMagazzino_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            e.CellStyle.BackColor = e.Value == null ? Color.Red : Color.Green;
         }
     }
 }

@@ -32,6 +32,7 @@
             this.grigliaMagazzino = new System.Windows.Forms.DataGridView();
             this.panelGrigliaMagazzino = new System.Windows.Forms.Panel();
             this.panelToolbar = new System.Windows.Forms.Panel();
+            this.buttonRimuoviProdotto = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grigliaMagazzino)).BeginInit();
             this.panelGrigliaMagazzino.SuspendLayout();
             this.panelToolbar.SuspendLayout();
@@ -70,11 +71,22 @@
             // 
             // panelToolbar
             // 
+            this.panelToolbar.Controls.Add(this.buttonRimuoviProdotto);
             this.panelToolbar.Controls.Add(this.buttonInserisciProdotti);
             this.panelToolbar.Location = new System.Drawing.Point(1, 614);
             this.panelToolbar.Name = "panelToolbar";
             this.panelToolbar.Size = new System.Drawing.Size(959, 32);
             this.panelToolbar.TabIndex = 4;
+            // 
+            // buttonRimuoviProdotto
+            // 
+            this.buttonRimuoviProdotto.Location = new System.Drawing.Point(178, 0);
+            this.buttonRimuoviProdotto.Name = "buttonRimuoviProdotto";
+            this.buttonRimuoviProdotto.Size = new System.Drawing.Size(172, 29);
+            this.buttonRimuoviProdotto.TabIndex = 2;
+            this.buttonRimuoviProdotto.Text = "Rimuovi prodotto";
+            this.buttonRimuoviProdotto.UseVisualStyleBackColor = true;
+            this.buttonRimuoviProdotto.Click += new System.EventHandler(this.buttonRimuoviProdotto_Click);
             // 
             // FormMagazzino
             // 
@@ -98,5 +110,6 @@
         private DataGridView grigliaMagazzino;
         private Panel panelGrigliaMagazzino;
         private Panel panelToolbar;
+        private Button buttonRimuoviProdotto;
     }
 }
