@@ -1,4 +1,5 @@
 ﻿
+using GMagazzinoApsov.Helper;
 using GMagazzinoApsov.Model;
 
 namespace GMagazzinoApsov
@@ -7,12 +8,12 @@ namespace GMagazzinoApsov
     {
         private int _numeroColonne = 29;
         private int _numeroRighe = 12;
+        public Magazzino Magazzino { get; set; }
         //private DataGridView grigliaMagazzino;
         public FormMagazzino()
         {
             InitializeComponent();
             Start();
-
             //IMPORT/EXPORT EXCEL
             //PAGINA INZIALE SELEZIONE MAGAZZINI
             //TODO SCARICO = ELIMINO I PRODOTTI DALLE CELLE SELEZIONATA CON POPUP DI CONFERMA
@@ -25,6 +26,7 @@ namespace GMagazzinoApsov
             InizializzaForm();
             InizializzaPanelMagazzino();
             InizializzaToolbar();
+            Magazzino = new Magazzino();
         }
 
         private void InizializzaForm()
@@ -104,7 +106,7 @@ namespace GMagazzinoApsov
                 }
                 if (flagInserisci)
                 {
-                    var formInserisciProdotto = new FormProdotto(grigliaMagazzino);
+                    var formInserisciProdotto = new FormProdotto(grigliaMagazzino, Magazzino);
                     formInserisciProdotto.ShowDialog();
                 }
             }
@@ -143,6 +145,28 @@ namespace GMagazzinoApsov
         private void grigliaMagazzino_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             e.CellStyle.BackColor = e.Value == null ? Color.Red : Color.Green;
+        }
+
+        private void buttonEsportaMagazzino_Click(object sender, EventArgs e)
+        {
+            var lista = new List<Prodotto>();
+            foreach (DataGridViewRow riga in grigliaMagazzino.Rows)
+            {
+                foreach (DataGridViewCell cella in riga.Cells)
+                {
+                    if (cella.Value != null)
+                    {
+                        var prodottoCella = (Prodotto) cella.Value;
+                        var prodotto = HelperSalvataggio.Clona(prodottoCella);
+                        prodotto.Riga = cella.RowIndex;
+                        prodotto.Colonna = cella.ColumnIndex;
+                        Magazzino.ListaProdotti.Add(prodotto);
+                    }
+                }
+            }
+            Magazzino.NumeroRighe = grigliaMagazzino.RowCount;
+            Magazzino.NumeroColonne = grigliaMagazzino.ColumnCount;
+            HelperSalvataggio.Esporta(Magazzino);
         }
     }
 }

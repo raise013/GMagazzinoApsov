@@ -33,6 +33,7 @@
             this.panelGrigliaMagazzino = new System.Windows.Forms.Panel();
             this.panelToolbar = new System.Windows.Forms.Panel();
             this.buttonRimuoviProdotto = new System.Windows.Forms.Button();
+            this.buttonEsportaMagazzino = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grigliaMagazzino)).BeginInit();
             this.panelGrigliaMagazzino.SuspendLayout();
             this.panelToolbar.SuspendLayout();
@@ -71,6 +72,7 @@
             // 
             // panelToolbar
             // 
+            this.panelToolbar.Controls.Add(this.buttonEsportaMagazzino);
             this.panelToolbar.Controls.Add(this.buttonRimuoviProdotto);
             this.panelToolbar.Controls.Add(this.buttonInserisciProdotti);
             this.panelToolbar.Location = new System.Drawing.Point(1, 614);
@@ -87,6 +89,16 @@
             this.buttonRimuoviProdotto.Text = "Rimuovi prodotto";
             this.buttonRimuoviProdotto.UseVisualStyleBackColor = true;
             this.buttonRimuoviProdotto.Click += new System.EventHandler(this.buttonRimuoviProdotto_Click);
+            // 
+            // buttonEsportaMagazzino
+            // 
+            this.buttonEsportaMagazzino.Location = new System.Drawing.Point(356, 0);
+            this.buttonEsportaMagazzino.Name = "buttonEsportaMagazzino";
+            this.buttonEsportaMagazzino.Size = new System.Drawing.Size(172, 29);
+            this.buttonEsportaMagazzino.TabIndex = 3;
+            this.buttonEsportaMagazzino.Text = "Esporta magazzino";
+            this.buttonEsportaMagazzino.UseVisualStyleBackColor = true;
+            this.buttonEsportaMagazzino.Click += new System.EventHandler(this.buttonEsportaMagazzino_Click);
             // 
             // FormMagazzino
             // 
@@ -111,5 +123,6 @@
         private Panel panelGrigliaMagazzino;
         private Panel panelToolbar;
         private Button buttonRimuoviProdotto;
+        private Button buttonEsportaMagazzino;
     }
 }

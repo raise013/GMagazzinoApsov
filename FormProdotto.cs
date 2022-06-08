@@ -5,10 +5,9 @@ namespace GMagazzinoApsov
     public partial class FormProdotto : Form
     {
         private DataGridView _grigliaMagazzino { get; set; }
-
         private Prodotto _prodotto { get; set; }
-
-        public FormProdotto(DataGridView grigliaMagazzino)
+        
+        public FormProdotto(DataGridView grigliaMagazzino, Magazzino magazzino)
         {
             InitializeComponent();
             _grigliaMagazzino = grigliaMagazzino;
