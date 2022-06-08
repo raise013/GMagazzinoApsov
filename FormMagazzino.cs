@@ -15,7 +15,6 @@ namespace GMagazzinoApsov
 
             //IMPORT/EXPORT EXCEL
             //PAGINA INZIALE SELEZIONE MAGAZZINI
-            //RIDIMENSIONAMENTO grigliaMagazzino
             //TODO SCARICO = ELIMINO I PRODOTTI DALLE CELLE SELEZIONATA CON POPUP DI CONFERMA
             //PULSANTE CTRL-Z
             //SPOSTAMENTO VALORI CELLE
@@ -93,8 +92,21 @@ namespace GMagazzinoApsov
             }
             else
             {
-                var formInserisciProdotto = new FormProdotto(grigliaMagazzino);
-                formInserisciProdotto.ShowDialog(); // Shows Form2
+                bool flagInserisci = true;
+                foreach (DataGridViewCell cella in grigliaMagazzino.SelectedCells)
+                {
+                    if (cella.Value != null)
+                    {
+                        MessageBox.Show("È necessario che tutte le celle selezionate siano vuote");
+                        flagInserisci = false;
+                        break;
+                    }
+                }
+                if (flagInserisci)
+                {
+                    var formInserisciProdotto = new FormProdotto(grigliaMagazzino);
+                    formInserisciProdotto.ShowDialog();
+                }
             }
         }
 
@@ -112,6 +124,7 @@ namespace GMagazzinoApsov
                 }
             }
         }
+
         private void buttonRimuoviProdotto_Click(object sender, EventArgs e)
         {
             if (grigliaMagazzino.SelectedCells == null)
