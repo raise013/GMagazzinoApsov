@@ -1,19 +1,21 @@
 ﻿
 using GMagazzinoApsov.Helper;
 using GMagazzinoApsov.Model;
+using Newtonsoft.Json;
+using System.Linq;
 
 namespace GMagazzinoApsov
 {
     public partial class FormMagazzino : Form
     {
-        private int _numeroColonne = 29;
-        private int _numeroRighe = 12;
+        private int _numeroColonne;
+        private int _numeroRighe;
         public Magazzino Magazzino { get; set; }
         //private DataGridView grigliaMagazzino;
-        public FormMagazzino()
+        public FormMagazzino(Magazzino magazzino)
         {
             InitializeComponent();
-            Start();
+            Start(magazzino);
             //IMPORT/EXPORT EXCEL
             //PAGINA INZIALE SELEZIONE MAGAZZINI
             //TODO SCARICO = ELIMINO I PRODOTTI DALLE CELLE SELEZIONATA CON POPUP DI CONFERMA
@@ -21,8 +23,11 @@ namespace GMagazzinoApsov
             //SPOSTAMENTO VALORI CELLE
         }
 
-        private void Start()
+        private void Start(Magazzino magazzino)
         {
+            _numeroColonne = magazzino.NumeroColonne;
+            _numeroRighe = magazzino.NumeroRighe;
+            Magazzino = magazzino;
             InizializzaForm();
             InizializzaPanelMagazzino();
             InizializzaToolbar();
@@ -54,6 +59,22 @@ namespace GMagazzinoApsov
             }
             panelGrigliaMagazzino.Anchor = AnchorStyles.Bottom | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Left;
             grigliaMagazzino.Anchor = AnchorStyles.Bottom | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Left;
+            PopolaGrigliaMagazzino();
+        }
+
+        private void PopolaGrigliaMagazzino()
+        {
+            foreach (DataGridViewRow riga in grigliaMagazzino.Rows)
+            {
+                foreach (DataGridViewCell cella in riga.Cells)
+                {
+                    var prodotto = Magazzino.ListaProdotti.Where(p => p.Riga == cella.RowIndex && p.Colonna == cella.ColumnIndex).FirstOrDefault();
+                    if (prodotto != null)
+                    {
+                        cella.Value = prodotto;
+                    }
+                }
+            }
         }
 
         private void InizializzaToolbar()

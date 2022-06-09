@@ -11,7 +11,6 @@ namespace GMagazzinoApsov.Helper
         {
             try
             {
-                //TODO
                 //RENDERE ASYNC: VOGLIO DESERIALIZZARE MENTRE SCELGO IL PERCORSO
                 //IMPOSTARE VERO NOME MAGAZZINO
                 string jsonMagazzino = JsonConvert.SerializeObject(magazzino, Formatting.Indented);
@@ -48,6 +47,44 @@ namespace GMagazzinoApsov.Helper
             return path;
         }
 
+        public static string ApriSelezioneFile()
+        {
+            var openFileDialog = new OpenFileDialog();
+            var dialogResult = openFileDialog.ShowDialog();
+            string filePath = String.Empty;
+            if (dialogResult == DialogResult.OK)
+            {
+                filePath = openFileDialog.FileName;
+            }
+            return filePath;
+        }
+
+        public static Magazzino Importa(string path)
+        {
+            var magazzino = new Magazzino();
+            if (_regexPath.IsMatch(path))
+            {
+                try
+                {
+                    if (File.Exists(path))
+                    {
+                        var jsonMagazzino = File.ReadAllText(path);
+                        magazzino = JsonConvert.DeserializeObject<Magazzino>(jsonMagazzino);
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Impossibile importare il file.", "Errore");
+                    throw new Exception();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Il percorso indicato non è valido.", "Errore");
+                throw new Exception();
+            }
+            return magazzino;
+        }
 
         public static Prodotto Clona(Prodotto prodotto)
         {

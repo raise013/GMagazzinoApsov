@@ -9,11 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <Compile Remove="ExportMagazzini\**" />
+    <EmbeddedResource Remove="ExportMagazzini\**" />
+    <None Remove="ExportMagazzini\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ExportMagazzini\" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
 </Project>
