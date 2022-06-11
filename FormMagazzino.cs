@@ -10,9 +10,8 @@ namespace GMagazzinoApsov
     {
         private int _numeroColonne;
         private int _numeroRighe;
-        private int _numeroRighePerSchermata = 15;
+        private int _numeroRighePerSchermata = 10;
         public Magazzino Magazzino { get; set; }
-        //private DataGridView grigliaMagazzino;
         public FormMagazzino(Magazzino magazzino)
         {
             InitializeComponent();
@@ -31,7 +30,7 @@ namespace GMagazzinoApsov
 
         private void InizializzaForm()
         {
-            this.Resize += Form_Resize;
+            this.Resize += formMagazzino_Resize;
             this.MinimumSize = new System.Drawing.Size(this.Width, this.Height);
             this.MaximumSize = new System.Drawing.Size(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
             this.AutoSize = true;
@@ -79,7 +78,7 @@ namespace GMagazzinoApsov
             panelToolbar.Dock = DockStyle.Bottom;
         }
 
-        private void Form_Resize(object sender, EventArgs e)
+        private void formMagazzino_Resize(object sender, EventArgs e)
         {
             foreach (DataGridViewRow riga in grigliaMagazzino.Rows)
             {
