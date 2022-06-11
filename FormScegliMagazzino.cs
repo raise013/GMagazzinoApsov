@@ -60,6 +60,7 @@ namespace GMagazzinoApsov
             }
             var formMagazzino = new FormMagazzino(magazzino);
             formMagazzino.ShowDialog();
+            Close();
         }
 
         private void buttonScegliMagazzino_Click(object sender, EventArgs e)

@@ -57,6 +57,7 @@ namespace GMagazzinoApsov
                 int header = i + 1;
                 AggiungiRiga(grigliaMagazzino, header.ToString());
             }
+            grigliaMagazzino.RowHeadersDefaultCellStyle.Padding = new Padding(0);
             panelGrigliaMagazzino.Anchor = AnchorStyles.Bottom | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Left;
             grigliaMagazzino.Anchor = AnchorStyles.Bottom | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Left;
             PopolaGrigliaMagazzino();

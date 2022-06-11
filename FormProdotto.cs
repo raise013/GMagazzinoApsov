@@ -60,7 +60,6 @@ namespace GMagazzinoApsov
 
         private void buttonSalvaProdotto_Click(object sender, EventArgs e)
         {
-            //TODO Varietà, categoria e concia devono essere obbligatori.
             var prodotto = new Prodotto();
             prodotto.Varieta = comboVarieta.SelectedItem?.ToString();
             prodotto.Categoria = comboCategoria.SelectedItem?.ToString();
