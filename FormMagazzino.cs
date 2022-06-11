@@ -17,11 +17,6 @@ namespace GMagazzinoApsov
         {
             InitializeComponent();
             Start(magazzino);
-            //IMPORT/EXPORT EXCEL
-            //PAGINA INZIALE SELEZIONE MAGAZZINI
-            //TODO SCARICO = ELIMINO I PRODOTTI DALLE CELLE SELEZIONATA CON POPUP DI CONFERMA
-            //PULSANTE CTRL-Z
-            //SPOSTAMENTO VALORI CELLE
         }
 
         private void Start(Magazzino magazzino)
@@ -157,9 +152,16 @@ namespace GMagazzinoApsov
             }
             else
             {
-                foreach (DataGridViewCell cella in grigliaMagazzino.SelectedCells)
+                var confirmResult = MessageBox.Show("Sei sicuro di voler eliminare gli elementi selezionati?",
+                    "Info",
+                    MessageBoxButtons.YesNo);
+
+                if (confirmResult == DialogResult.Yes)
                 {
-                    cella.Value = null;
+                    foreach (DataGridViewCell cella in grigliaMagazzino.SelectedCells)
+                    {
+                        cella.Value = null;
+                    }
                 }
             }
         }
