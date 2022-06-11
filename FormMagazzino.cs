@@ -10,6 +10,7 @@ namespace GMagazzinoApsov
     {
         private int _numeroColonne;
         private int _numeroRighe;
+        private int _numeroRighePerSchermata = 15;
         public Magazzino Magazzino { get; set; }
         //private DataGridView grigliaMagazzino;
         public FormMagazzino(Magazzino magazzino)
@@ -31,7 +32,6 @@ namespace GMagazzinoApsov
             InizializzaForm();
             InizializzaPanelMagazzino();
             InizializzaToolbar();
-            Magazzino = new Magazzino();
         }
 
         private void InizializzaForm()
@@ -87,7 +87,7 @@ namespace GMagazzinoApsov
         {
             foreach (DataGridViewRow riga in grigliaMagazzino.Rows)
             {
-                riga.Height = grigliaMagazzino.Parent.Height / _numeroRighe;
+                riga.Height = grigliaMagazzino.Parent.Height / _numeroRighePerSchermata;
             }
         }
 
@@ -103,7 +103,7 @@ namespace GMagazzinoApsov
         {
             var riga = new DataGridViewRow();
             riga.HeaderCell.Value = header;
-            riga.Height = this.Height / _numeroRighe;
+            riga.Height = this.Height / _numeroRighePerSchermata;
             grigliaMagazzino.Rows.Add(riga);
         }
 

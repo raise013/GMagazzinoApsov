@@ -12,14 +12,13 @@ namespace GMagazzinoApsov.Helper
             try
             {
                 //RENDERE ASYNC: VOGLIO DESERIALIZZARE MENTRE SCELGO IL PERCORSO
-                //IMPOSTARE VERO NOME MAGAZZINO
                 string jsonMagazzino = JsonConvert.SerializeObject(magazzino, Formatting.Indented);
                 string path = ApriSelezionePath();
                 if (_regexPath.IsMatch(path))
                 {
                     string dataAttuale = DateTime.Now.ToString("yyyyMMdd_HHmmss");
                     string nomeMagazzino = magazzino.Nome == null ? "Magazzino" : magazzino.Nome;
-                    string nomeFile = $"Magazzino_{dataAttuale}";
+                    string nomeFile = $"{nomeMagazzino}_{dataAttuale}";
                     string percorsoCompleto = $"{path}\\{nomeFile}.json";
                     File.WriteAllText(percorsoCompleto, jsonMagazzino);
                     MessageBox.Show("Il file è stato esportato correttamente.", "Info");
